@@ -1,13 +1,13 @@
 //
-//  MineSweeperUITestsLaunchTests.swift
-//  MineSweeperUITests
+//  MinesweeperUITestsLaunchTests.swift
+//  MinesweeperUITests
 //
 //  Created by 劉俐妤 on 2025/4/3.
 //
 
 import XCTest
 
-final class MineSweeperUITestsLaunchTests: XCTestCase {
+final class MinesweeperUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

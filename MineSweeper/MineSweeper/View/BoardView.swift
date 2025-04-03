@@ -12,10 +12,10 @@ struct BoardView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(0..<game.settings.numberOfRows, id: \.self) { row in
+            ForEach(0..<game.board.count, id: \.self) { row in
                 HStack(spacing: 0) {
-                    ForEach(0..<game.settings.numberOfColumns,id: \.self) { col in
-                        CellView(cell: Cell(row: row, column: col))
+                    ForEach(0..<game.board[row].count,id: \.self) { col in
+                        CellView(cell: game.board[row][col])
                     }
                 }
             }

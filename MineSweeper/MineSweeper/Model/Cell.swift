@@ -24,6 +24,7 @@ class Cell:ObservableObject {
     /// Whether or not the cell has been flagged
     @Published var isFlagged: Bool
     
+    // TODO: add images
     /// Get the image associated to the status of the cell
     var image: some View {
         if !isOpened && isFlagged {

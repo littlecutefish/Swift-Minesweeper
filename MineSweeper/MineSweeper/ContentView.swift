@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  MineSweeper
+//  Minesweeper
 //
 //  Created by 劉俐妤 on 2025/4/3.
 //

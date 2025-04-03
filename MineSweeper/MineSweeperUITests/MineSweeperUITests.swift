@@ -1,13 +1,13 @@
 //
-//  MineSweeperUITests.swift
-//  MineSweeperUITests
+//  MinesweeperUITests.swift
+//  MinesweeperUITests
 //
 //  Created by 劉俐妤 on 2025/4/3.
 //
 
 import XCTest
 
-final class MineSweeperUITests: XCTestCase {
+final class MinesweeperUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
