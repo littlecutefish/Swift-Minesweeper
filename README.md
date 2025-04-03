@@ -1,1 +1,1 @@
-# Swift-MineSweeper
+# Swift-Minesweeper
