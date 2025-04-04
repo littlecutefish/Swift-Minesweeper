@@ -11,31 +11,78 @@ struct ConfigView: View {
     @StateObject private var gameSettings = GameSettings()
     @State private var isGameStarted = false
     
-    // Sliders ranges
-    private let rowRange = 5...20
+    // Range
+    private let rowRange = 5...30
     private let columnRange = 5...20
     private let bombPercentageRange = 10...30
     
-    // Computed property to calculate max bombs based on board size
+    // Calculate max of bombs' count
     private var maxBombs: Int {
         return (gameSettings.numberOfRows * gameSettings.numberOfColumns) / 3
+    }
+    
+    // Button for choosing three different level
+    private func difficultyButton(title: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(8)
+        }
     }
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                Text("Minesweeper")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.top, 30)
+                VStack {
+                    Image(systemName: "grid.circle")
+                        .font(.system(size: 60))
+                        .foregroundColor(.blue)
+                    Text("~ Minesweeper ~")
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
+                .padding()
                 
                 Spacer()
                 
+                // Level choosing
+                HStack(spacing: 12) {
+                    difficultyButton(title: "Beginner", action: {
+                        gameSettings.numberOfRows = 9
+                        gameSettings.numberOfColumns = 9
+                        gameSettings.numberOfBombs = 10
+                    })
+                    
+                    difficultyButton(title: "Intermediate", action: {
+                        gameSettings.numberOfRows = 16
+                        gameSettings.numberOfColumns = 16
+                        gameSettings.numberOfBombs = 40
+                    })
+                    
+                    difficultyButton(title: "Advanced", action: {
+                        gameSettings.numberOfRows = 30
+                        gameSettings.numberOfColumns = 16
+                        gameSettings.numberOfBombs = 99
+                    })
+                }
+                .padding(.horizontal)
+                
+                Divider()
+                    .padding(.vertical, 10)
+                
                 VStack(alignment: .leading, spacing: 25) {
-                    // Rows configuration
+                    Text("Custom Settings")
+                        .font(.headline)
+                        .padding(.horizontal)
+                    
+                    // Row setting
                     VStack(alignment: .leading) {
                         Text("Rows: \(gameSettings.numberOfRows)")
-                            .font(.headline)
+                            .font(.subheadline)
                         
                         HStack {
                             Text("\(rowRange.lowerBound)")
@@ -48,10 +95,10 @@ struct ConfigView: View {
                     }
                     .padding(.horizontal)
                     
-                    // Columns configuration
+                    // Column setting
                     VStack(alignment: .leading) {
                         Text("Columns: \(gameSettings.numberOfColumns)")
-                            .font(.headline)
+                            .font(.subheadline)
                         
                         HStack {
                             Text("\(columnRange.lowerBound)")
@@ -64,10 +111,10 @@ struct ConfigView: View {
                     }
                     .padding(.horizontal)
                     
-                    // Bombs configuration
+                    // Bombs setting
                     VStack(alignment: .leading) {
-                        Text("Bombs: \(gameSettings.numberOfBombs)")
-                            .font(.headline)
+                        Text("Bomb's Count: \(gameSettings.numberOfBombs)")
+                            .font(.subheadline)
                         
                         HStack {
                             Text("1")
@@ -78,7 +125,7 @@ struct ConfigView: View {
                             Text("\(maxBombs)")
                         }
                         
-                        Text("Bomb density: \(bombPercentage)%")
+                        Text("Bomb Density: \(bombPercentage)%")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -95,7 +142,7 @@ struct ConfigView: View {
                         .environmentObject(Game(from: gameSettings))
                         .navigationBarBackButtonHidden(true)
                         .onDisappear {
-                            // Reset game settings for next game
+                            // Reset the game
                             gameSettings.objectWillChange.send()
                         }
                 ) {

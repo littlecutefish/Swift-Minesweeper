@@ -20,7 +20,13 @@ class GameSettings: ObservableObject{
     
     /// The size each square should be based on the width of the screen
     var squareSize: CGFloat {
-        UIScreen.main.bounds.width / CGFloat(numberOfColumns)
+        // Calculate the size of each cell
+        // but make sure it is not smaller than the minimum size
+        let minSize: CGFloat = 30 // Minimum cell size
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // Calculate the cell size based on the screen width
+        // and number of columns, but not less than the minimum size
+        return max(minSize, screenWidth / CGFloat(numberOfColumns) - 2) // -2 : leave space for the border
     }
 }
-

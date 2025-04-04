@@ -15,56 +15,63 @@ struct BoardView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 10) {
-                // Game info header
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Board: \(game.settings.numberOfRows)×\(game.settings.numberOfColumns)")
-                            .font(.subheadline)
-                        Text("Bombs: \(game.settings.numberOfBombs)")
-                            .font(.subheadline)
+            VStack(spacing: 0) {
+                // Game information fixed at the top
+                VStack(spacing: 10) {
+                    // Game info header
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Board: \(game.settings.numberOfRows)×\(game.settings.numberOfColumns)")
+                                .font(.subheadline)
+                            Text("Bombs: \(game.settings.numberOfBombs)")
+                                .font(.subheadline)
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            // Reset game state before returning to config screen
+                            game.resetGame()
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Text("New Game")
+                                .fontWeight(.bold)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                        }
                     }
+                    .padding(.horizontal)
                     
-                    Spacer()
-                    
-                    Button(action: {
-                        // Reset game state before returning to config screen
-                        game.resetGame()
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("New Game")
-                            .fontWeight(.bold)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 5)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
-                    }
+                    // Game status view
+                    GameStatusView()
+                        .padding(.horizontal)
                 }
-                .padding(.horizontal)
+                .padding(.top)
+                .background(Color.white)
+                .zIndex(1) // Make sure it's always on top
                 
-                // Game status view
-                GameStatusView()
-                
-                Spacer(minLength: 20)
-                
-                // Game board
-                VStack(spacing: 0) {
-                    ForEach(0..<game.board.count, id: \.self) { row in
-                        HStack(spacing: 0) {
-                            ForEach(0..<game.board[row].count,id: \.self) { col in
-                                CellView(cell: game.board[row][col])
+                // Scrollable game board area
+                ScrollView([.horizontal, .vertical], showsIndicators: true) {
+                    VStack(spacing: 0) {
+                        ForEach(0..<game.board.count, id: \.self) { row in
+                            HStack(spacing: 0) {
+                                ForEach(0..<game.board[row].count, id: \.self) { col in
+                                    CellView(cell: game.board[row][col])
+                                }
                             }
                         }
                     }
+                    .padding(5)
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(5)
+                    .padding()
                 }
-                .padding(5)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(5)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
-                Spacer()
-                
-                // Game instructions
+                // Fixed bottom guidance information
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Instructions:")
                         .font(.headline)
@@ -76,8 +83,10 @@ struct BoardView: View {
                 .background(Color.gray.opacity(0.1))
                 .cornerRadius(8)
                 .padding(.horizontal)
+                .padding(.bottom)
+                .background(Color.white)
+                .zIndex(1) // Make sure it always appears at the bottom
             }
-            .padding()
             .navigationBarHidden(true)
             .alert(isPresented: $showingGameOver) {
                 Alert(

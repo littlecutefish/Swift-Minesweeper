@@ -14,7 +14,6 @@ struct CellView: View {
     
     var body: some View {
         cell.image
-//            .resizable()
             .scaledToFill()
             .frame(width: game.settings.squareSize,
                    height: game.settings.squareSize,

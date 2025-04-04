@@ -24,7 +24,6 @@ class Cell:ObservableObject {
     /// Whether or not the cell has been flagged
     @Published var isFlagged: Bool
     
-    // TODO: add images
     /// Get the image associated to the status of the cell
     var image: some View {
         if !isOpened && isFlagged {
@@ -64,7 +63,7 @@ class Cell:ObservableObject {
                 )
             }
             
-            // 根据数字选择不同的颜色
+            // Choose color within different number
             let color: Color
             switch total {
             case 1: color = .blue
