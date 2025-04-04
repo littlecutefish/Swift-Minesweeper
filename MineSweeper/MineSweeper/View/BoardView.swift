@@ -32,6 +32,8 @@ struct BoardView: View {
                         Button(action: {
                             // Reset game state before returning to config screen
                             game.resetGame()
+                            
+                            // Close the current view and return to the previous view
                             presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("New Game")

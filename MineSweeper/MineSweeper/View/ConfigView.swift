@@ -28,7 +28,7 @@ struct ConfigView: View {
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 10)
-                .background(Color.blue)
+                .background(Color.macaron.deepLavender)
                 .foregroundColor(.white)
                 .cornerRadius(8)
         }
@@ -40,7 +40,7 @@ struct ConfigView: View {
                 VStack {
                     Image(systemName: "grid.circle")
                         .font(.system(size: 60))
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color.macaron.deepRose)
                     Text("~ Minesweeper ~")
                         .font(.title)
                         .fontWeight(.bold)
@@ -151,7 +151,7 @@ struct ConfigView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .frame(width: 200, height: 50)
-                        .background(Color.blue)
+                        .background(Color.macaron.deepSkyBlue)
                         .cornerRadius(10)
                 }
                 .padding(.bottom, 50)

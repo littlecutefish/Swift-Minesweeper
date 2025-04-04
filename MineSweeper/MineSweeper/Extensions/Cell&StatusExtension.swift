@@ -1,5 +1,5 @@
 //
-//  Cell&status.swift
+//  Cell&statusExtension.swift
 //  Minesweeper
 //
 //  Created by 劉俐妤 on 2025/4/2.

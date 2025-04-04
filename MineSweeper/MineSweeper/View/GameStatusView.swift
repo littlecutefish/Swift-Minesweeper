@@ -36,7 +36,7 @@ struct GameStatusView: View {
                 }
             }
         }
-        
+
         return revealedCount
     }
     
