@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6A1490CD2D9D9A2B00AF8935 /* Build configuration list for PBXProject "MineSweeper" */;
+			buildConfigurationList = 6A1490CD2D9D9A2B00AF8935 /* Build configuration list for PBXProject "Minesweeper" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -513,7 +513,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A1490CD2D9D9A2B00AF8935 /* Build configuration list for PBXProject "MineSweeper" */ = {
+		6A1490CD2D9D9A2B00AF8935 /* Build configuration list for PBXProject "Minesweeper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A1490F12D9D9A3000AF8935 /* Debug */,

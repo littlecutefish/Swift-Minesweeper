@@ -80,8 +80,6 @@ class Cell:ObservableObject {
             
             return AnyView(
                 ZStack {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.1))
                     Text("\(total)")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(color)
