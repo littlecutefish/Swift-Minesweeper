@@ -72,7 +72,7 @@ class Cell:ObservableObject {
             case 3: color = .red
             case 4: color = .purple
             case 5: color = .orange
-            case 6: color = .pink
+            case 6: color = .pink 
             case 7: color = .black
             case 8: color = .gray
             default: color = .primary

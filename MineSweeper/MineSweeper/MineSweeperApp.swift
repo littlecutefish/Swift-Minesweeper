@@ -13,8 +13,7 @@ struct MinesweeperApp: App {
     
     var body: some Scene {
         WindowGroup {
-            BoardView()
-                .environmentObject(Game(from: gameSettings))
+            ConfigView()
         }
     }
 }

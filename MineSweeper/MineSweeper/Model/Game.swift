@@ -14,22 +14,92 @@ class Game: ObservableObject {
     /// The game board
     @Published var board: [[Cell]]
     
+    /// Current game state
+    @Published var gameState: GameState = .playing
+    
+    /// Game state enum
+    enum GameState {
+        case playing
+        case won
+        case lost
+    }
+    
     init(from settings: GameSettings) {
         self.settings = settings
         self.board = Self.generateBoard(from: settings) // Construct the board; Self=call the type of "Game"
+        self.isFirstClick = true
+        self.gameState = .playing
     }
+    
+    // Reset the game to start a new one with the same settings
+    func resetGame() {
+        self.board = Self.generateBoard(from: settings)
+        self.isFirstClick = true
+        self.gameState = .playing
+        self.objectWillChange.send()
+    }
+    
+    // Track first click
+    private var isFirstClick = true
     
     // MARK: - Public Function
     func click(on cell: Cell) {
+        // If game is over, do nothing
+        guard gameState == .playing else { return }
+        
+        // If cell is flagged, do nothing
+        guard !cell.isFlagged else { return }
+        
+        // Handle first click - ensure it's not a bomb
+        if isFirstClick {
+            isFirstClick = false
+            
+            // If first click is a bomb, move it elsewhere
+            if cell.status == .bomb {
+                relocateBomb(from: cell)
+            }
+            
+            // Ensure no bombs in neighboring cells on first click (for better player experience)
+            let neighbors = getNeighborCells(for: cell)
+            for neighbor in neighbors {
+                if neighbor.status == .bomb {
+                    relocateBomb(from: neighbor)
+                }
+            }
+        }
+        
         // Check we didn't click on a bomb
         if cell.status == .bomb {
             cell.isOpened = true
+            gameState = .lost
+            revealAllBombs()
         } else {
             reveal(for: cell)
+            checkWinCondition()
         }
         
         // Tell UI we have published some changes
         self.objectWillChange.send()
+    }
+    
+    // Relocate a bomb to a safe location
+    private func relocateBomb(from cell: Cell) {
+        // First set the cell's status to normal
+        cell.status = .normal
+        
+        // Find a new location for the bomb
+        var relocated = false
+        while !relocated {
+            let randomRow = Int.random(in: 0..<board.count)
+            let randomCol = Int.random(in: 0..<board[0].count)
+            let targetCell = board[randomRow][randomCol]
+            
+            // Only relocate to unopened cells that don't already have bombs
+            if !targetCell.isOpened && targetCell.status != .bomb {
+                targetCell.status = .bomb
+                relocated = true
+            }
+        }
     }
     
     // MARK: - Private Function
@@ -74,7 +144,7 @@ class Game: ObservableObject {
         let minRow = max(row - 1, 0)
         let minCol = max(col - 1, 0)
         let maxRow = min(row + 1, board.count - 1)
-        let maxCol = min(col + 1, board.count - 1)
+        let maxCol = min(col + 1, board[0].count - 1) // Fix here - use board[0].count
         
         var totalBombCount = 0
         for row in minRow...maxRow {
@@ -114,18 +184,69 @@ class Game: ObservableObject {
         // If it is empty, start traversing the neighboring cells
         // Recurse to visit all the neighbor cells
         if (exposedCount == 0) {
-            let topCell = board[max(0, cell.row - 1)][cell.column]
-            let bottomCell = board[min(board.count - 1, cell.row + 1)][cell.column]
-            let leftCell = board[cell.row][max(0, cell.column - 1)]
-            let rightCell = board[cell.row][min(board.count - 1, cell.column + 1)]
+            // Get all neighboring cells
+            let neighbors = getNeighborCells(for: cell)
             
             // Reveal empty neighbor cells
-            reveal(for: topCell)
-            reveal(for: bottomCell)
-            reveal(for: leftCell)
-            reveal(for: rightCell)
+            for neighborCell in neighbors {
+                reveal(for: neighborCell)
+            }
+        }
+    }
+    
+    // Helper method to get all neighboring cells
+    private func getNeighborCells(for cell: Cell) -> [Cell] {
+        let row = cell.row
+        let col = cell.column
+        
+        let minRow = max(row - 1, 0)
+        let minCol = max(col - 1, 0)
+        let maxRow = min(row + 1, board.count - 1)
+        let maxCol = min(col + 1, board[0].count - 1)
+        
+        var neighbors = [Cell]()
+        
+        for r in minRow...maxRow {
+            for c in minCol...maxCol {
+                // Skip the cell itself
+                if r == row && c == col {
+                    continue
+                }
+                neighbors.append(board[r][c])
+            }
+        }
+        
+        return neighbors
+    }
+    
+    // Reveal all bombs when game is over
+    private func revealAllBombs() {
+        for row in 0..<board.count {
+            for col in 0..<board[row].count {
+                if board[row][col].status == .bomb {
+                    board[row][col].isOpened = true
+                }
+            }
+        }
+    }
+    
+    // Check if player has won
+    private func checkWinCondition() {
+        let totalCells = settings.numberOfRows * settings.numberOfColumns
+        let bombCount = settings.numberOfBombs
+        var openedCount = 0
+        
+        for row in 0..<board.count {
+            for col in 0..<board[row].count {
+                if board[row][col].isOpened {
+                    openedCount += 1
+                }
+            }
+        }
+        
+        // Player wins if all non-bomb cells are opened
+        if openedCount == totalCells - bombCount {
+            gameState = .won
         }
     }
 }
-
-

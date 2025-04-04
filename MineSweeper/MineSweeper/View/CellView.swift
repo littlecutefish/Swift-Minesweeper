@@ -19,8 +19,16 @@ struct CellView: View {
             .frame(width: game.settings.squareSize,
                    height: game.settings.squareSize,
                    alignment: .center)
+            .border(Color.gray, width: 0.5)
             .onTapGesture {
                 game.click(on: cell)
+            }
+            .onLongPressGesture {
+                // Flag the cell on long press
+                if !cell.isOpened {
+                    cell.isFlagged.toggle()
+                    game.objectWillChange.send()
+                }
             }
     }
 }
