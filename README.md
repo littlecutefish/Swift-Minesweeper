@@ -2,6 +2,13 @@
 
 A classic Minesweeper game built with SwiftUI, featuring customizable board sizes and difficulty levels.
 
+## Installation
+
+- **Clone github**
+  '''
+  git clone https://github.com/littlecutefish/Swift-Minesweeper.git
+  '''
+
 ## Features
 
 - **Multiple Difficulty Levels**:
