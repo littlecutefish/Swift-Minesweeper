@@ -5,9 +5,10 @@ A classic Minesweeper game built with SwiftUI, featuring customizable board size
 ## Installation
 
 - **Clone github**
-  '''
+  ```
   git clone https://github.com/littlecutefish/Swift-Minesweeper.git
-  '''
+  ```
+- **Start the active scheme**
 
 ## Features
 
