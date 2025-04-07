@@ -18,8 +18,9 @@ struct MacaronColorTheme {
     let rose = Color(hex: "#F6BDC0")       // 玫瑰粉
     let skyBlue = Color(hex: "#A1DDFF")    // 天空藍
     let pistachio = Color(hex: "#D8E4B2")  // 開心果綠
+    let fairPink = Color(hex: "#ffeded")
     
-    // 深色調版本（適用於按鈕、強調等）
+    // 深色調版本
     let deepMint = Color(hex: "#5ECDB6")     // 深薄荷綠
     let deepLavender = Color(hex: "#9C8AA5") // 深薰衣草紫
     let deepPeach = Color(hex: "#FFC199")    // 深蜜桃色
@@ -27,6 +28,9 @@ struct MacaronColorTheme {
     let deepRose = Color(hex: "#EF9EA3")     // 深玫瑰粉
     let deepSkyBlue = Color(hex: "#74BDEC")  // 深天空藍
     let deepPistachio = Color(hex: "#B7C66E") // 深開心果綠
+    let deepYellow = Color(hex: "#e8b327")
+    let deepGreen = Color(hex: "#b0c688")
+    let deepPink = Color(hex: "#ec8aa3")
     
     // 遊戲相關顏色
     let boardBackground = Color(hex: "#EFEFEF") // 棋盤背景色
@@ -41,7 +45,7 @@ struct MacaronColorTheme {
     let number5 = Color(hex: "#E6A639") // 柔和的橙色
     let number6 = Color(hex: "#4AABC5") // 柔和的青色
     let number7 = Color(hex: "#383838") // 柔和的黑色
-    let number8 = Color(hex: "#737373") // 柔和的灰色
+    let softGray = Color(hex: "#737373") // 柔和的灰色
     
     // 狀態顏色
     let success = Color(hex: "#A5D6A7") // 馬卡龍風格的成功綠色

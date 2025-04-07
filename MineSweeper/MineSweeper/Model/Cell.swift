@@ -52,28 +52,28 @@ class Cell:ObservableObject {
         case .normal:
             return AnyView(
                 Rectangle()
-                    .fill(Color.gray.opacity(0.3))
+                    .fill(Color.macaron.cellBackground.opacity(0.3))
             )
             
         case .exposed(let total):
             if total == 0 {
                 return AnyView(
                     Rectangle()
-                        .fill(Color.gray.opacity(0.1))
+                        .fill(Color.macaron.boardBackground.opacity(0.1))
                 )
             }
             
             // Choose color within different number
             let color: Color
             switch total {
-            case 1: color = .blue
-            case 2: color = .green
-            case 3: color = .red
-            case 4: color = .purple
-            case 5: color = .orange
-            case 6: color = .pink 
-            case 7: color = .black
-            case 8: color = .gray
+            case 1: color = .macaron.number1
+            case 2: color = .macaron.number2
+            case 3: color = .macaron.number3
+            case 4: color = .macaron.number4
+            case 5: color = .macaron.number5
+            case 6: color = .macaron.number6
+            case 7: color = .macaron.number7
+            case 8: color = .macaron.softGray
             default: color = .primary
             }
             

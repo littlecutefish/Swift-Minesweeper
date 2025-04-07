@@ -75,7 +75,7 @@ struct GameStatusView: View {
                     
                     Rectangle()
                         .frame(width: min(CGFloat(completionPercentage) * geometry.size.width / 100, geometry.size.width), height: 10)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color.macaron.deepSkyBlue)
                 }
                 .cornerRadius(5)
             }

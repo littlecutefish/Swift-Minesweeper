@@ -40,7 +40,7 @@ struct BoardView: View {
                                 .fontWeight(.bold)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 5)
-                                .background(Color.blue)
+                                .background(Color.macaron.deepSkyBlue)
                                 .foregroundColor(.white)
                                 .cornerRadius(5)
                         }
@@ -52,8 +52,7 @@ struct BoardView: View {
                         .padding(.horizontal)
                 }
                 .padding(.top)
-                .background(Color.white)
-                .zIndex(1) // Make sure it's always on top
+                .zIndex(1)
                 
                 // Scrollable game board area
                 ScrollView([.horizontal, .vertical], showsIndicators: true) {
@@ -86,8 +85,7 @@ struct BoardView: View {
                 .cornerRadius(8)
                 .padding(.horizontal)
                 .padding(.bottom)
-                .background(Color.white)
-                .zIndex(1) // Make sure it always appears at the bottom
+                .zIndex(1)
             }
             .navigationBarHidden(true)
             .alert(isPresented: $showingGameOver) {
