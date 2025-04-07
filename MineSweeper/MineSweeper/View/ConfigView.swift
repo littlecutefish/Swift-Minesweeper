@@ -169,8 +169,8 @@ struct ConfigView: View {
     }
 }
 
-struct ConfigView_Previews: PreviewProvider {
-    static var previews: some View {
-        ConfigView()
-    }
-}
+//struct ConfigView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ConfigView()
+//    }
+//}

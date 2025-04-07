@@ -111,9 +111,9 @@ struct BoardView: View {
     }
 }
 
-struct BoardView_Previews: PreviewProvider {
-    private static var gameSetting = GameSettings()
-    static var previews: some View {
-        BoardView().environmentObject(Game(from: gameSetting))
-    }
-}
+//struct BoardView_Previews: PreviewProvider {
+//    private static var gameSetting = GameSettings()
+//    static var previews: some View {
+//        BoardView().environmentObject(Game(from: gameSetting))
+//    }
+//}

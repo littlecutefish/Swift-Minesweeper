@@ -87,9 +87,9 @@ struct GameStatusView: View {
     }
 }
 
-struct GameStatusView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameStatusView()
-            .environmentObject(Game(from: GameSettings()))
-    }
-}
+//struct GameStatusView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameStatusView()
+//            .environmentObject(Game(from: GameSettings()))
+//    }
+//}
