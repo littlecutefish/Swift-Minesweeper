@@ -35,16 +35,6 @@
 			path = MineSweeper;
 			sourceTree = "<group>";
 		};
-		6A1490E22D9D9A3000AF8935 /* MineSweeperTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MineSweeperTests;
-			sourceTree = "<group>";
-		};
-		6A1490EC2D9D9A3000AF8935 /* MineSweeperUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MineSweeperUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				6A1490D42D9D9A2B00AF8935 /* MineSweeper */,
-				6A1490E22D9D9A3000AF8935 /* MineSweeperTests */,
-				6A1490EC2D9D9A3000AF8935 /* MineSweeperUITests */,
 				6A1490D32D9D9A2B00AF8935 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				6A1490E12D9D9A3000AF8935 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				6A1490E22D9D9A3000AF8935 /* MineSweeperTests */,
-			);
 			name = MineSweeperTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				6A1490EB2D9D9A3000AF8935 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				6A1490EC2D9D9A3000AF8935 /* MineSweeperUITests */,
 			);
 			name = MineSweeperUITests;
 			packageProductDependencies = (
