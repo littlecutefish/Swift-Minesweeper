@@ -103,7 +103,7 @@ class Game: ObservableObject {
     }
     
     // MARK: - Private Function
-    /// Generate the board with the given number of boms
+    /// Generate the board with the given number of bombs
     /// - Parameter settings: The game settings to create the board from
     /// - Returns: 2D array of cells from which the starting game will be played
     private static func generateBoard(from settings: GameSettings) -> [[Cell]] {
@@ -119,7 +119,7 @@ class Game: ObservableObject {
             newBoard.append(column)
         }
         
-        // Place our bombs until they've all been placed
+        // Place our bombs randomly until they've all been placed
         var numberOfBombsPlaced = 0
         while numberOfBombsPlaced < settings.numberOfBombs {
             // Generate a random number that will fall somewhere in our board

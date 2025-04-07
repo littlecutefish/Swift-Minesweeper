@@ -88,6 +88,15 @@ struct BoardView: View {
                 .zIndex(1)
             }
             .navigationBarHidden(true)
+            .onReceive(game.$gameState) { state in
+                if state == .won {
+                    gameWon = true
+                    showingGameOver = true
+                } else if state == .lost {
+                    gameWon = false
+                    showingGameOver = true
+                }
+            }
             .alert(isPresented: $showingGameOver) {
                 Alert(
                     title: Text(gameWon ? "You Won!" : "Game Over"),
@@ -97,15 +106,6 @@ struct BoardView: View {
                     },
                     secondaryButton: .cancel(Text("Continue"))
                 )
-            }
-            .onReceive(game.$gameState) { state in
-                if state == .won {
-                    gameWon = true
-                    showingGameOver = true
-                } else if state == .lost {
-                    gameWon = false
-                    showingGameOver = true
-                }
             }
         }
     }
