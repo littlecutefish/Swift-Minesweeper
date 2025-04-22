@@ -74,5 +74,6 @@ The game is built with SwiftUI and follows the MVVM architecture:
 - **Optimized Cell Rendering**: Efficient display of the game grid
 - **State Management**: Using SwiftUI's state management capabilities
 
-![image](https://github.com/user-attachments/assets/75e16955-3b63-4e79-9f66-6350b2ca224c)
+![image](https://github.com/user-attachments/assets/4ff8f33b-0a29-4c7b-aded-b08150bae583)
+
 
